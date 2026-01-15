@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'mpp2025'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = '21'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.base']
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version:'2.24.3'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version:'2.24.3'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.41.2.2'
+    implementation 'org.springframework:spring-context:5.3.30'
+    implementation 'org.springframework:spring-core:5.3.30'
+}
+
+application{
+    mainClass = 'ro.mpp2025.Main'
+}
+
+jar{
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest{
+        attributes('Main-Class': 'ro.mpp2025.Main')
+    }
+    from{
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+test {
+    useJUnitPlatform()
+}

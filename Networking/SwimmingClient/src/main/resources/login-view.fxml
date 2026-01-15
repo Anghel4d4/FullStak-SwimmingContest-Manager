@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: linear-gradient(to bottom, #1e5799, #2989d8);">
+    <Rectangle width="400" height="350" arcWidth="20" arcHeight="20" fill="white" opacity="0.9"/>
+    <VBox alignment="CENTER" spacing="15" maxWidth="350">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="Sistem de inscriere concurs inot" style="-fx-text-fill: #1e5799;">
+            <font>
+                <Font name="System Bold" size="18"/>
+            </font>
+        </Label>
+
+        <Label text="Autentificare" style="-fx-text-fill: #2989d8;">
+            <font>
+                <Font name="System Bold" size="16"/>
+            </font>
+        </Label>
+
+        <VBox spacing="5">
+            <Label text="Nume utilizator" style="-fx-text-fill: #555555;"/>
+            <TextField fx:id="usernameField" promptText="Introduceți numele de utilizator"
+                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Parolă" style="-fx-text-fill: #555555;"/>
+            <PasswordField fx:id="passwordField" promptText="Introduceți parola"
+                           style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+        </VBox>
+
+        <Button text="Autentificare" fx:id="loginButton"
+                style="-fx-background-color: #2989d8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;">
+            <padding>
+                <Insets top="10" right="30" bottom="10" left="30"/>
+            </padding>
+        </Button>
+
+        <Label fx:id="errorLabel" style="-fx-text-fill: #e74c3c;" visible="false"/>
+    </VBox>
+</StackPane>

@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+option java_package = "org.example.grpc";
+option java_outer_classname = "SwimmingProto";
+option csharp_namespace = "Server.Protos";
+
+service SwimmingService {
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Logout (LogoutRequest) returns (Empty);
+  rpc GetAllProbes (Empty) returns (ProbesResponse);
+  rpc AddInscriere (InscriereRequest) returns (Empty);
+  rpc SaveParticipant (ParticipantRequest) returns (ParticipantResponse);
+  rpc FindParticipantsByProba (ProbaSearchRequest) returns (ParticipantsResponse);
+  rpc FindNameAndPrenume (NameSearchRequest) returns (ParticipantResponse);
+  rpc SubscribeToNotifications (Empty) returns (stream InscriereNotification);
+}
+
+message Empty {}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  User user = 1;
+  string error = 2;
+}
+
+message LogoutRequest {
+  int64 user_id = 1;
+}
+
+message User {
+  int64 id = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message Proba {
+  int64 id = 1;
+  int32 distanta = 2;
+  string stil = 3;
+  int32 participantCount = 4;
+}
+
+message Participant {
+  int64 id = 1;
+  string nume = 2;
+  string prenume = 3;
+  int32 varsta = 4;
+  int32 eventCount = 5;
+}
+
+message Inscriere {
+  int64 id = 1;
+  Participant participant = 2;
+  Proba proba = 3;
+}
+
+message InscriereRequest {
+  Inscriere inscriere = 1;
+}
+
+message InscriereNotification {
+  Inscriere inscriere = 1;
+}
+
+message ProbesResponse {
+  repeated Proba probes = 1;
+}
+
+message ParticipantRequest {
+  Participant participant = 1;
+}
+
+message ParticipantResponse {
+  Participant participant = 1;
+  string error = 2;
+}
+
+message ProbaSearchRequest {
+  int32 distanta = 1;
+  string stil = 2;
+}
+
+message ParticipantsResponse {
+  repeated Participant participants = 1;
+}
+
+message NameSearchRequest {
+  string nume = 1;
+  string prenume = 2;
+}
